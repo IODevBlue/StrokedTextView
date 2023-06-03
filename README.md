@@ -64,28 +64,11 @@ implementation 'io.github.iodevblue:strokedtextview:1.0.0-SNAPSHOT'
 - Copy the `StrokedTextView` class file located in the `com.blueiobase.api.android.strokedtextview` package from the downloaded project zip file into the new `strokedtextview` package.
 - Edit the package declaration in the class file accordingly.
 - Copy the contents of the `res` folder in the project zip into your module's `res` folder. 
-- Alternatively for convenience and arrangement in an ordered manner, you could create a `sourceSet` dedicated to 3rd party libraries like so:
-```GROOVY
-android {
-  sourceSets {
-    main {
-      res {
-        srcDirs file("src/main/thirdpartyres/").listFiles(),
-                'src/main/thirdpartyres'
-      }
-      java {
-        srcDirs 'src/main/thirdpartylibraries'
-      }
-    }
-  }
-}
-```
-- Then sync project with Gradle.
-- This creates a specialized Gradle source set `thirdpartylibraries` for 3rd party library source files and `thirdpartyres` for 3rd party resource files in the `main` directory.
-- Create a `strokedtextview` subfolder in the `thirdpartyres` folder and copy the resource contents from the `strokedtextview` module from the downloaded project zip file into the new subfolder.
-- Copy the contents of the `com.blueiobase.api.android.strokedtextview` package from the downloaded project zip file into the `thirdpartylibraries` source set.
-- Again, this method makes the source code accessible. If you do make major or minor improvements to the source code, consider making a pull request or an issue to make a contribution.
+
+If you do make major or minor improvements to the source code, consider making a pull request or an issue to make a contribution.
+
 Check the [Contributing](https://github.com/IODevBlue/StrokedTextView/blob/development/CONTRIBUTING.md) for more information.
+
 
 
 Usage
@@ -104,20 +87,20 @@ Add a `StrokedTextView` to your XML design
         app:textStrokeWidth="5"
 />
 ```
-The `textStrokeColor` attribute defines the color to be applied to the text outline.
+The `textStrokeColor` attribute defines the color to be applied to the text outline. 
 
 The `textStrokeWidth` defines the thickness of the stroke applied to the text.
 
 `StrokedTextView` is essentially a `TextView` and contains all its methods and properties.
 
-Configurations: (Optional)
+Configurations:
 ---------------
 |Variable | Default |        Use        |
 |:---|:-------:|:-----------------:|
 |`strokeColor` |    0    | The Stroke color. |
 |`strokeWidth` |   0F    | The stroke width. |
 
-XML attributes: (Optional)
+XML attributes:
 --------------
 |Attribute |   Default   |Use |
 |:---|:-----------:|:---:|
@@ -131,6 +114,7 @@ Contributors are welcome!
 **NOTE:** This repository is split into two branches:
 - [main](https://github.com/IODevBlue/StrokedTextView/tree/main) branch
 - [development](https://github.com/IODevBlue/StrokedTextView/tree/development) branch
+
 All developing implementations and proposed changes are pushed to the [development](https://github.com/IODevBlue/StrokedTextView/tree/development) branch and finalized updates are pushed to the [main](https://github.com/IODevBlue/StrokedTextView/tree/main) branch.
 
 To note if current developments are being made, there would be more commits in the [development](https://github.com/IODevBlue/StrokedTextView/tree/development) branch than in the [main](https://github.com/IODevBlue/StrokedTextView/tree/main) branch.

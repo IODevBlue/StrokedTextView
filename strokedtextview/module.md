@@ -9,6 +9,3 @@ This is base package for the StrokedTextView library.
 
 It contains these classes: 
 - StrokedTextView
-
-@author IODevBlue &copy; 2023
-@since v1.0.0
