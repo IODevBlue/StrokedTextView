@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">StrokedTextView</string>
+    <string name="image_button">Image Button</string>
+
+    <string name="ani">Ani Font</string>
+    <string name="asterix">Asterix Blink</string>
+    <string name="blackwood">Blackwood Castle</string>
+    <string name="brydan">Bryndan Write</string>
+    <string name="bungee">Bungee White</string>
+</resources>

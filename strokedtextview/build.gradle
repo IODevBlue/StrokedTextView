@@ -1,0 +1,161 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.dokka'
+    id 'signing'
+    id 'maven-publish'
+}
+
+android {
+    namespace 'com.blueiobase.api.android.strokedtextview'
+
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 33
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    publishing {
+        singleVariant("release")
+    }
+}
+
+def releaseVersion = '1.0.0'
+
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = 'io.github.iodevblue'
+                artifactId = 'strokedtextview'
+                version = releaseVersion
+                from components.release
+                artifact androidJavadocJar
+                artifact androidSourcesJar
+                artifact androidJar
+                pom {
+                    name = 'StrokedTextView'
+                    description = 'A native android textview capable of adding strokes or outlines to texts.'
+                    url = 'https://github.com/IODevBlue/StrokedTextView.git'
+                    packaging = 'jar'
+
+                    licenses {
+                        license {
+                            name = 'Apache License Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = 'iodevblue'
+                            name = 'IO DevBlue'
+                            email = 'iodevblue@gmail.com'
+                        }
+                    }
+
+                    scm {
+                        connection = 'scm:git:git://github.com/IODevBlue/StrokedTextView.git'
+                        developerConnection = 'scm:git:ssh://github.com/IODevBlue/StrokedTextView.git'
+                        url = 'https://github.com/IODevBlue/StrokedTextView'
+                    }
+                }
+
+            }
+
+        }
+
+        repositories {
+            def releaseUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+            maven {
+                credentials {
+                    username = sonatypeUsername
+                    password = sonatypePassword
+                }
+                url = uri(releaseVersion.endsWith('SNAPSHOT')? snapshotUrl:releaseUrl)
+            }
+        }
+
+    }
+
+    signing {
+        sign publishing.publications.maven
+    }
+}
+
+dokkaHtml {
+    moduleName.set("StrokedTextView")
+    suppressInheritedMembers.set(true)
+    offlineMode.set(true)
+    dokkaSourceSets {
+        configureEach {
+            includes.from("module.md")
+        }
+    }
+}
+
+task androidSourcesJar(type: Jar) {
+    getArchiveClassifier().set('sources')
+    from android.sourceSets.main.kotlin.srcDirs
+    doLast {
+        copy {
+            from androidSourcesJar
+            into "$rootProject.projectDir/artefacts/$releaseVersion"
+        }
+    }
+}
+
+task androidJavadocJar(type: Jar, dependsOn: dokkaJavadoc) {
+    getArchiveClassifier().set('javadoc')
+    from dokkaJavadoc
+    doLast {
+        copy {
+            from androidJavadocJar
+            into "$rootProject.projectDir/artefacts/$releaseVersion"
+        }
+    }
+}
+
+task androidJar(type: Jar) {
+    def path = "build/intermediates/full_jar/release/full.jar"
+    def file = getRootProject().project("strokedtextview").file(new File(path))
+    if (!file.exists()) {
+        println("ERROR: strokedtextview:- Run the createFullJarRelease task first to create the jar file.")
+        return
+    }
+    from zipTree(file)
+    doLast {
+        copy {
+            from androidJar
+            into "$rootProject.projectDir/artefacts/$releaseVersion"
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
