@@ -3,7 +3,7 @@ StrokedTextView
 A native android textview capable of adding strokes or outlines to texts.
 
 [<img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/IODevBlue/StrokedTextView?label=Current Version&color=2CCCE4&style=for-the-badge&labelColor=0109B6">](https://github.com/IODevBlue/StrokedTextView/releases) <img alt="Repository Size" src="https://img.shields.io/github/repo-size/IODevBlue/StrokedTextView?color=2CCCE4&style=for-the-badge&labelColor=0109B6"> [<img alt="License" src="https://img.shields.io/github/license/IODevBlue/StrokedTextView?color=2CCCE4&style=for-the-badge&labelColor=0109B6">](http://www.apache.org/licenses/LICENSE-2.0) [<img alt="GitHub Repository stars" src="https://img.shields.io/github/stars/IODevBlue/StrokedTextView?color=2CCCE4&style=for-the-badge&labelColor=0109B6">](https://github.com/IODevBlue/StrokedTextView/stargazers)
-<img alt="GitHub watchers" src="https://img.shields.io/github/watchers/IODevBlue/StrokedTextView?label=Repository Watchers&color=2CCCE4&style=for-the-badge&labelColor=0109B6"> [<img alt="Gradle version" src="https://img.shields.io/static/v1?label=Gradle version&message=8.0.0&color=2CCCE4&style=for-the-badge&labelColor=0109B6">](https://docs.gradle.org/8.0/release-notes) [<img alt="Kotlin version" src="https://img.shields.io/static/v1?label=Kotlin version&message=1.8.20&color=2CCCE4&style=for-the-badge&labelColor=0109B6">](https://kotlinlang.org/docs/whatsnew1820)
+<img alt="GitHub watchers" src="https://img.shields.io/github/watchers/IODevBlue/StrokedTextView?label=Repository Watchers&color=2CCCE4&style=for-the-badge&labelColor=0109B6"> [<img alt="Gradle version" src="https://img.shields.io/static/v1?label=Gradle version&message=8.0.0&color=2CCCE4&style=for-the-badge&labelColor=0109B6">](https://docs.gradle.org/8.0/release-notes) [<img alt="Kotlin version" src="https://img.shields.io/static/v1?label=Kotlin version&message=1.8.20&color=2CCCE4&style=for-the-badge&labelColor=0109B6">](https://kotlinlang.org/docs/whatsnew1820.html)
 
 Table of content
 ----------------
@@ -105,6 +105,7 @@ Add a `StrokedTextView` to your XML design
 />
 ```
 The `textStrokeColor` attribute defines the color to be applied to the text outline.
+
 The `textStrokeWidth` defines the thickness of the stroke applied to the text.
 
 `StrokedTextView` is essentially a `TextView` and contains all its methods and properties.
