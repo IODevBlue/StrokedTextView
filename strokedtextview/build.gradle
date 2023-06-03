@@ -126,7 +126,13 @@ task androidSourcesJar(type: Jar) {
 
 task androidJavadocJar(type: Jar, dependsOn: dokkaJavadoc) {
     getArchiveClassifier().set('javadoc')
-    from android.sourceSets.main.kotlin.srcDirs
+    from dokkaJavadoc
+    doLast {
+        copy {
+            from androidJavadocJar
+            into "$rootProject.projectDir/artefacts/$releaseVersion"
+        }
+    }
 }
 
 task androidJar(type: Jar) {
